@@ -1,6 +1,6 @@
 package com.pavellos.fraud.controller;
 
-import com.pavellos.fraud.dto.FraudCheckResponse;
+import com.pavellos.clients.fraud.dto.FraudCheckResponse;
 import com.pavellos.fraud.service.FraudCheckHistoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
