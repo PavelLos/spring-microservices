@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/fraud-check")
 public record FraudCheckHistoryController(FraudCheckHistoryService fraudCheckHistoryService) {
 
-    @GetMapping(params = "${customerId}")
-    public FraudCheckResponse isFraudster(@PathVariable("customerId") Long customerID){
-        boolean isFraudCustomer = fraudCheckHistoryService.isFraudCustomer(customerID);
+    @GetMapping(path = "{customerId}")
+    public FraudCheckResponse isFraudster(@PathVariable("customerId") Long customerId){
+        boolean isFraudCustomer = fraudCheckHistoryService.isFraudCustomer(customerId);
         return new FraudCheckResponse(isFraudCustomer);
     }
 }

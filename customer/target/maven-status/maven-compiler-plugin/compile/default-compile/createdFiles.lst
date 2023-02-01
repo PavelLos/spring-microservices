@@ -1,7 +1,0 @@
-com/pavellos/customer/model/Customer$CustomerBuilder.class
-com/pavellos/customer/dto/CustomerRegistrationRequest.class
-com/pavellos/customer/model/Customer.class
-com/pavellos/customer/CustomerApp.class
-com/pavellos/customer/service/CustomerService.class
-com/pavellos/customer/repository/CustomerRepository.class
-com/pavellos/customer/controller/CustomerController.class
