@@ -1,11 +1,12 @@
 package com.pavellos.customer.service;
 
 import com.pavellos.customer.dto.CustomerRegistrationRequest;
-import com.pavellos.customer.repository.Customer;
+import com.pavellos.customer.model.Customer;
+import com.pavellos.customer.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public record CustomerService() {
+public record CustomerService(CustomerRepository customerRepository) {
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -16,5 +17,7 @@ public record CustomerService() {
 
         //todo: validate
         //todo: store customer
+
+        customerRepository.save(customer);
     }
 }
