@@ -9,3 +9,7 @@ eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
