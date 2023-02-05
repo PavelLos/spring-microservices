@@ -32,7 +32,7 @@ rabbitmq:
   queue:
     notification: notification.queue
   routing-keys:
-    internal-notification: internal.notification.routing- key
+    internal-notification: internal.notification.routing-key
 
 logging:
   pattern:

@@ -1,5 +1,6 @@
 package com.pavellos.customer.service;
 
+import com.pavellos.amqp.RabbitMQMessageProducer;
 import com.pavellos.clients.fraud.FraudClient;
 import com.pavellos.clients.fraud.dto.FraudCheckResponse;
 import com.pavellos.clients.notification.NotificationClient;
@@ -15,8 +16,7 @@ public record CustomerService(
         CustomerRepository customerRepository,
         RestTemplate restTemplate,
         FraudClient fraudClient,
-
-        NotificationClient notificationClient) {
+        RabbitMQMessageProducer rabbitMQMessageProducer) {
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -37,7 +37,10 @@ public record CustomerService(
                 customer.getEmail(),
                 String.format("Hi %s, welcome to MicroServices...", customer.getFName())
         );
-        notificationClient.sendNotification(notificationRequest);
-        //todo: send notification
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
+        );
     }
 }
