@@ -28,6 +28,7 @@
     <spring.boot.maven.plugin.version>3.0.2</spring.boot.maven.plugin.version>
     <spring.boot.maven.dependencies.version>3.0.2</spring.boot.maven.dependencies.version>
     <spring.cloud-version>2022.0.1</spring.cloud-version>
+    <image>pavello/${project.artifactId}:${project.version}</image>
   </properties>
 
   <dependencyManagement>
@@ -87,6 +88,29 @@
             <execution>
               <goals>
                 <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.google.cloud.tools</groupId>
+          <artifactId>jib-maven-plugin</artifactId>
+          <version>3.3.1</version>
+          <configuration>
+            <from>
+              <image>eclipse-temurin:19</image>
+            </from>
+            <to>
+              <tags>
+                <tag>latest</tag>
+              </tags>
+            </to>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>build </goal>
               </goals>
             </execution>
           </executions>
