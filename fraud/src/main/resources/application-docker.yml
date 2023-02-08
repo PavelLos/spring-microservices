@@ -1,12 +1,13 @@
 server:
-  port: 8082
+  port: 8081
 
 spring:
   application:
-    name: notification
+    name: fraud
+
   datasource:
     password: password
-    url: jdbc:postgresql://localhost:5432/notification
+    url: jdbc:postgresql://postgres:5432/fraud
     username: springmicr
   jpa:
     properties:
@@ -16,23 +17,13 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-  rabbitmq:
-    addresses: localhost:5672
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka
     fetch-registry: true
     register-with-eureka: true
-
-rabbitmq:
-  exchanges:
-    internal: internal.exchange
-  queue:
-    notification: notification.queue
-  routing-keys:
-    internal-notification: internal.notification.routing-key
 
 logging:
   pattern:
@@ -44,4 +35,4 @@ management:
       probability: 1.0
   zipkin:
     tracing:
-      endpoint: "http://localhost:9411/api/v2/spans"
+      endpoint: "http://zipkin:9411/api/v2/spans"
